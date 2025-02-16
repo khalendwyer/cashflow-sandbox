@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cashflow Sandbox</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Include Chart.js for charting -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cashflow Sandbox</h1>
+    
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+      <button class="tab-button active" data-tab="personal">Personal Info</button>
+      <button class="tab-button" data-tab="assets">Assets</button>
+      <button class="tab-button" data-tab="contributions">Contributions</button>
+      <button class="tab-button" data-tab="expenses">Expenses</button>
+      <button class="tab-button" data-tab="assumptions">Assumptions</button>
+      <button class="tab-button" data-tab="output">Output</button>
+    </div>
+    
+    <!-- Personal Information Tab -->
+    <div class="tab-content active" id="personal">
+      <h2>Personal Information</h2>
+      <div class="pill">
+        <label>
+          Current Age:
+          <input type="number" id="currentAge" min="0" value="50" />
+        </label>
+      </div>
+      <div class="pill">
+        <label>
+          Life Expectancy (Your Age):
+          <input type="number" id="lifeExpectancy" min="0" value="90" />
+        </label>
+      </div>
+      <div class="pill">
+        <label>
+          <input type="checkbox" id="addPartner" />
+          Add Spouse/Partner
+        </label>
+      </div>
+      <div id="partnerFields" class="pill" style="display: none;">
+        <label>
+          Partner's Current Age:
+          <input type="number" id="partnerCurrentAge" min="0" value="38" />
+        </label>
+        <label>
+          Partner's Life Expectancy:
+          <input type="number" id="partnerLifeExpectancy" min="0" value="88" />
+        </label>
+      </div>
+    </div>
+    
+    <!-- Assets Tab -->
+    <div class="tab-content" id="assets">
+      <h2>Assets</h2>
+      <div id="accountsContainer"></div>
+      <button id="addAccountBtn" class="pill-btn">Add Account</button>
+    </div>
+    
+    <!-- Contributions Tab -->
+    <div class="tab-content" id="contributions">
+      <h2>Contributions</h2>
+      <div id="contributionsContainer"></div>
+      <button id="addContributionBtn" class="pill-btn">Add Contribution</button>
+    </div>
+    
+    <!-- Expenses Tab -->
+    <div class="tab-content" id="expenses">
+      <h2>Expenses</h2>
+      <div id="expensesContainer"></div>
+      <button id="addExpenseBtn" class="pill-btn">Add Expense</button>
+    </div>
+    
+    <!-- Assumptions Tab -->
+    <div class="tab-content" id="assumptions">
+      <h2>Assumptions</h2>
+      <div class="pill">
+        <label>
+          Stocks Expected Return (%):
+          <input type="number" id="stocksReturn" step="0.1" value="7.0" />
+        </label>
+      </div>
+      <div class="pill">
+        <label>
+          Bonds Expected Return (%):
+          <input type="number" id="bondsReturn" step="0.1" value="3.0" />
+        </label>
+      </div>
+      <div class="pill">
+        <label>
+          Cash Expected Return (%):
+          <input type="number" id="cashReturn" step="0.1" value="1.0" />
+        </label>
+      </div>
+      <div class="pill">
+        <label>
+          Tax Rate (%):
+          <input type="number" id="taxRate" step="0.1" value="15.0" />
+        </label>
+      </div>
+    </div>
+    
+    <!-- Output Tab -->
+    <div class="tab-content" id="output">
+      <h2>Output</h2>
+      <!-- Aggregated Table -->
+      <table id="cashFlowTable">
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>Beg Balance</th>
+            <th>Contributions</th>
+            <th>Annual Return</th>
+            <th>Taxes</th>
+            <th>Expenses</th>
+            <th>End Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aggregated rows will be generated here -->
+        </tbody>
+      </table>
+      <!-- Chart -->
+      <div class="chart-container">
+        <canvas id="balanceChart"></canvas>
+      </div>
+      <!-- Account-Level Detail Section -->
+      <div id="accountDetailContainer">
+        <h3>Account-Level Cashflow</h3>
+        <label for="accountDetailSelect">Select Account:</label>
+        <select id="accountDetailSelect"></select>
+        <table id="accountDetailTable">
+          <thead>
+            <tr>
+              <th>Age</th>
+              <th>Beg Balance</th>
+              <th>Contributions</th>
+              <th>Annual Return</th>
+              <th>Taxes</th>
+              <th>Expenses</th>
+              <th>End Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Account-specific rows will be generated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
